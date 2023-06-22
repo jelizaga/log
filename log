@@ -1,0 +1,43 @@
+#!/bin/bash
+
+################################################################################
+################################################################################
+
+#ENTRY=$1;
+TODAY=$(date +%Y-%m-%d);
+LOG_FILE="log.md";
+
+output_log () {
+  local INPUT_LOG="$1";
+  while IFS= read -r ENTRY
+  do
+    echo "Entry: $ENTRY";
+    ENTRY_DATE=$(echo "$ENTRY" | cut -d'/' -f1);
+    echo "Date: $ENTRY_DATE";
+    ENTRY_TIME=$(echo "$ENTRY" | cut -d'/' -f2 | cut -d' ' -f2);
+    echo "Time: $ENTRY_TIME";
+    ENTRY_TEXT=$(echo "$ENTRY" | cut -d'-' -f4);
+    echo "Text: $ENTRY_TEXT";
+    FORMATTED_ENTRY="- \`$ENTRY_TIME\` - $ENTRY_TEXT";
+    echo "$FORMATTED_ENTRY";
+    echo "$FORMATTED_ENTRY" >> log.md;
+  done < "$INPUT_LOG"
+}
+
+input_title () {
+  local TITLE="log";
+}
+
+input_entry () {
+  local ENTRY_TEXT="$*";
+  local ENTRY_DATE=$TODAY;
+  local ENTRY_TIME=$(date +%H:%M:%S);
+  #local DATE=$(date +%Y-%m-%d);
+  local ENTRY="- \`$ENTRY_TIME\` - $ENTRY_TEXT $ENTRY_DATE";
+  echo "$ENTRY";
+  echo "$ENTRY" >> "$LOG_FILE";
+}
+
+################################################################################
+
+input_entry "$@";
