@@ -5,30 +5,57 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Features](#features)
+  * [User Interface](#user-interface)
+  * [Command Line](#command-line)
+    * [Options](#options)
 * [Example Outputs](#example-outputs)
-  * [Example Markdown Output](#example-markdown-output)
-  * [Example JSON Output](#example-json-output)
+  * [Markdown](#markdown)
+  * [JSON](#json)
 
 <!-- vim-markdown-toc -->
 
 ## Features
 
-**`log` -** Initializes `log`; displays this month's entries in human-readable
-format, with visible entry IDs, with the current context visible, and opens a 
-persistent prompt below for executing subsequent commands:
-  * **Adding entries -** Write an entry with `#tags` and a `#/context/a/b/c` to
+### User Interface
+
+**`log`** initializes `log`, opening its UI. The displays this month's entries
+in human-readable format, with visible entry IDs and current context, and opens
+a persistent prompt at the bottom of the UI for executing subsequent commands:
+* **Adding entries -** Write an entry with `#tags` and a `#/context/a/b/c` to
 be added to the log.
-  * **`rm`:**
-    * **`rm [ENTRY_ID(s)]` -** Removes all entries with the given `[ENTRY_ID(s)]`.
-    * **`rm [DATE(s)]` -** Flexibly removes all entries made in the given
 date(s). `rm 06`, for example, would remove all entries in June, while `rm 2023` would remove all entries in 2023, and `rm 2023-06-29` would remove all entries on June 29, 2023.
-  * **`e [ENTRY_ID]` -** Opens prompt for editing an existing entry, given the
+* **`e [ENTRY_ID]` -** Opens prompt for editing an existing entry, given the
 `[ENTRY_ID]`.
-  * **`q` -** quits `log`.
+* **`h` -** Opens `log`'s manual.
+* **`l [LOG_NAME]` -** Opens a log with the given `[LOG_NAME]`.
+* **`q` -** quits `log`.
+* **`rm`:**
+  * **`rm [ENTRY_ID(s)]` -** Removes all entries with the given `[ENTRY_ID(s)]`.
+  * **`rm [DATE(s)]` -** Flexibly removes all entries made in the given
+* **`v` -** Displays `log`'s version.
+
+### Command Line
+
+* **Adding entries -** `log [ENTRY]` will add a new log `ENTRY` to the current
+log.
+
+#### Options
+
+`log` can be executed with the following options:
+
+* **`-e [ENTRY_ID]` -** Opens prompt for editing an existing entry, given the
+`[ENTRY_ID]`.
+* **`-h` -** Opens `log`'s manual.
+* **`-l [LOG_NAME]` -** Switches `log` to handle a log
+with the given `[LOG_NAME]`.
+* **`-rm`:**
+  * **`-rm [ENTRY_ID(s)]` -** Removes all entries with the given `[ENTRY_ID(s)]`.
+  * **`-rm [DATE(s)]` -** Flexibly removes all entries made in the given
+* **`-v` -** Displays `log`'s version.
 
 ## Example Outputs
 
-### Example Markdown Output
+### Markdown
 
 ```
 ---
@@ -61,7 +88,7 @@ title: My Journal
 * **`11:29:53` -** Nibh sit amet commodo nulla facilisi nullam vehicula. `#job_search`
 ```
 
-### Example JSON Output
+### JSON
 
 ```
 {
