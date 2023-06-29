@@ -8,7 +8,7 @@
   * [User Interface](#user-interface)
   * [Command Line](#command-line)
     * [Options](#options)
-* [Example Outputs](#example-outputs)
+* [Example Export Outputs](#example-export-outputs)
   * [Markdown](#markdown)
   * [JSON](#json)
 
@@ -24,42 +24,58 @@ a persistent prompt at the bottom of the UI for executing subsequent commands:
 * **Adding entries -** Write an entry with `#tags` and a `#/context/a/b/c` to
 be added to the log.
 date(s). `rm 06`, for example, would remove all entries in June, while `rm 2023` would remove all entries in 2023, and `rm 2023-06-29` would remove all entries on June 29, 2023.
+* **`a [AUTHOR_NAME]` -** Sets the log's author to the given `[AUTHOR_NAME]`.
 * **`e [ENTRY_ID]` -** Opens prompt for editing an existing entry, given the
 `[ENTRY_ID]`.
 * **`h` -** Opens `log`'s manual.
+* **`j` -** Exports the log to JSON.
 * **`l [LOG_NAME]` -** Opens a log with the given `[LOG_NAME]`.
 * **`q` -** quits `log`.
 * **`rm`:**
   * **`rm [ENTRY_ID(s)]` -** Removes all entries with the given `[ENTRY_ID(s)]`.
   * **`rm [DATE(s)]` -** Flexibly removes all entries made in the given
 * **`v` -** Displays `log`'s version.
+* **`x` -** Exports the log to Markdown.
 
 ### Command Line
 
-* **Adding entries -** `log [ENTRY]` will add a new log `ENTRY` to the current
+**Adding entries -** `log [ENTRY]` will add a new log `ENTRY` to the current
 log.
 
 #### Options
 
 `log` can be executed with the following options:
 
+* **`-a [AUTHOR_NAME]` -** Sets the log's author to the given `[AUTHOR_NAME]`.
+* **`-c` -** Displays the current log.
 * **`-e [ENTRY_ID]` -** Opens prompt for editing an existing entry, given the
 `[ENTRY_ID]`.
 * **`-h` -** Opens `log`'s manual.
+* **`-i` -** Displays information about the current log:
+  * log title
+  * log author
+  * log path
+  * entry count
+  * date of first entry
+  * contexts used
+  * tags used
+* **`-j` -** Exports the log to [JSON](#json).
 * **`-l [LOG_NAME]` -** Switches `log` to handle a log
 with the given `[LOG_NAME]`.
 * **`-rm`:**
   * **`-rm [ENTRY_ID(s)]` -** Removes all entries with the given `[ENTRY_ID(s)]`.
   * **`-rm [DATE(s)]` -** Flexibly removes all entries made in the given
 * **`-v` -** Displays `log`'s version.
+* **`-x` -** Exports the log to [Markdown](#markdown).
 
-## Example Outputs
+## Example Export Outputs
 
 ### Markdown
 
 ```
 ---
 title: My Journal
+author: J. Doe
 ---
 
 # My Journal
@@ -90,9 +106,9 @@ title: My Journal
 
 ### JSON
 
-```
+```json
 {
-  "title": "My Journal"
+  "title": "My Journal",
   "entries": [
     {
       "entry": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. `#cooking` `#salad` `#soup`",
